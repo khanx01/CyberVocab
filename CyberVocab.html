@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Cybersecurity vocabulary flashcards with Urdu translations — for SOC analysts, security students, and professionals."/>
+<meta name="author" content="Fawad Hassan"/>
+<meta name="copyright" content="© 2026 Fawad Hassan. All Rights Reserved."/>
+<meta name="license" content="CC BY-NC 4.0 - Attribution-NonCommercial. For personal/educational use only. Commercial use prohibited without written permission."/>
+<title>CyberVocab — Security Flashcards (اردو + English)</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #f5f4f0;
+  --bg2: #eceae4;
+  --surface: #ffffff;
+  --border: #d0cdc5;
+  --border-strong: #555;
+  --text: #1a1a1a;
+  --text2: #555;
+  --text3: #999;
+  --accent: #1a1a1a;
+  --accent-inv: #ffffff;
+  --tag-attack-bg: #1a1a1a;
+  --tag-attack-fg: #ffffff;
+  --tag-other-bg: transparent;
+  --tag-other-fg: #1a1a1a;
+  --tag-other-border: #1a1a1a;
+  --prog-track: #ddd;
+  --prog-fill: #1a1a1a;
+  --known-dim: 0.45;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --card-hover-shadow: 0 6px 24px rgba(0,0,0,0.14);
+  --flip-bg: #f0ede6;
+  --urdu-color: #3a3a3a;
+  --example-border: #888;
+  --example-color: #555;
+  --search-bg: #fff;
+  --filter-active-bg: #1a1a1a;
+  --filter-active-fg: #fff;
+  --filter-inactive-fg: #555;
+  --filter-inactive-border: #ccc;
+  --modal-bg: rgba(0,0,0,0.55);
+  --tooltip-bg: #1a1a1a;
+  --tooltip-fg: #fff;
+  --scrollbar: #ccc;
+}
+.dark {
+  --bg: #0d0d0d;
+  --bg2: #141414;
+  --surface: #1a1a1a;
+  --border: #2e2e2e;
+  --border-strong: #aaa;
+  --text: #f0f0f0;
+  --text2: #aaa;
+  --text3: #555;
+  --accent: #f0f0f0;
+  --accent-inv: #0d0d0d;
+  --tag-attack-bg: #f0f0f0;
+  --tag-attack-fg: #0d0d0d;
+  --tag-other-bg: transparent;
+  --tag-other-fg: #f0f0f0;
+  --tag-other-border: #f0f0f0;
+  --prog-track: #2a2a2a;
+  --prog-fill: #f0f0f0;
+  --shadow: 0 2px 12px rgba(0,0,0,0.5);
+  --card-hover-shadow: 0 6px 24px rgba(255,255,255,0.06);
+  --flip-bg: #212121;
+  --urdu-color: #cccccc;
+  --example-border: #555;
+  --example-color: #aaa;
+  --search-bg: #1a1a1a;
+  --filter-active-bg: #f0f0f0;
+  --filter-active-fg: #0d0d0d;
+  --filter-inactive-fg: #888;
+  --filter-inactive-border: #333;
+  --modal-bg: rgba(0,0,0,0.8);
+  --tooltip-bg: #f0f0f0;
+  --tooltip-fg: #0d0d0d;
+  --scrollbar: #333;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--scrollbar);border-radius:3px}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;min-height:100vh;transition:background 0.3s,color 0.3s;padding-bottom:4rem}
+
+/* ── HEADER ── */
+.header{
+  background:var(--surface);
+  border-bottom:2px solid var(--border-strong);
+  padding:1rem 1.25rem 0.75rem;
+  position:sticky;top:0;z-index:100;
+  transition:background 0.3s,border-color 0.3s;
+}
+.header-top{display:flex;align-items:center;gap:10px;margin-bottom:0.6rem;flex-wrap:wrap}
+.logo{font-size:15px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);white-space:nowrap}
+.logo span{color:var(--text2);font-weight:400}
+.header-actions{display:flex;gap:6px;margin-left:auto;flex-shrink:0;flex-wrap:wrap}
+.btn{padding:5px 14px;border:1.5px solid var(--border-strong);background:transparent;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.08em;cursor:pointer;text-transform:uppercase;transition:all 0.15s;white-space:nowrap}
+.btn:hover,.btn.active{background:var(--accent);color:var(--accent-inv);border-color:var(--accent)}
+.btn-sm{padding:4px 10px;font-size:10px}
+
+/* ── SEARCH ── */
+.search-row{display:flex;gap:8px;margin-bottom:0.5rem}
+.search-wrap{position:relative;flex:1}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:13px;pointer-events:none}
+.search-box{width:100%;padding:7px 12px 7px 30px;font-family:'JetBrains Mono',monospace;font-size:13px;border:1.5px solid var(--border);background:var(--search-bg);color:var(--text);outline:none;transition:border-color 0.2s,background 0.3s}
+.search-box:focus{border-color:var(--border-strong)}
+.search-box::placeholder{color:var(--text3)}
+.clear-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;padding:2px 4px;display:none}
+
+/* ── FILTER BAR ── */
+.filter-bar{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:0.5rem;align-items:center}
+.fbtn{padding:4px 11px;border:1.5px solid var(--filter-inactive-border);background:transparent;color:var(--filter-inactive-fg);font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.07em;cursor:pointer;text-transform:uppercase;transition:all 0.15s}
+.fbtn:hover{border-color:var(--border-strong);color:var(--text)}
+.fbtn.active{background:var(--filter-active-bg);color:var(--filter-active-fg);border-color:var(--filter-active-bg)}
+.filter-sep{color:var(--text3);font-size:10px;padding:0 2px}
+
+/* ── STATS & PROGRESS ── */
+.stats-row{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--text2);letter-spacing:0.04em}
+.prog-bar{flex:1;height:2px;background:var(--prog-track);overflow:hidden;max-width:180px}
+.prog-fill{height:100%;background:var(--prog-fill);transition:width 0.4s cubic-bezier(0.4,0,0.2,1)}
+
+/* ── MAIN CONTENT ── */
+.main{padding:1rem 1.25rem}
+
+/* ── TOOLBAR ── */
+.toolbar{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap;align-items:center}
+.toolbar-label{font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-right:2px}
+.sort-select{padding:4px 10px;border:1.5px solid var(--border);background:var(--search-bg);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:10px;cursor:pointer;outline:none;transition:border-color 0.2s}
+.sort-select:focus{border-color:var(--border-strong)}
+
+/* ── CARD GRID ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+
+/* ── FLASHCARD ── */
+.card{
+  background:var(--surface);border:1.5px solid var(--border);
+  position:relative;cursor:pointer;
+  perspective:900px;
+  transition:opacity 0.3s, border-color 0.2s, box-shadow 0.2s;
+  box-shadow:var(--shadow);
+  height:auto;
+}
+.card:hover{border-color:var(--border-strong);box-shadow:var(--card-hover-shadow)}
+.card.known{opacity:var(--known-dim)}
+.card.known:hover{opacity:0.8}
+
+.card-inner{
+  width:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform 0.45s cubic-bezier(0.4,0,0.2,1), height 0.3s ease;
+  min-height:120px;
+}
+.card.flipped .card-inner{
+  transform:rotateY(180deg);
+  min-height:220px;
+}
+.card-face{
+  position:absolute;inset:0;padding:13px 15px 38px;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  display:flex;flex-direction:column;gap:4px;
+}
+/* Front face absolute when unflipped */
+.card:not(.flipped) .card-front{position:absolute;inset:0}
+/* Back face absolute when unflipped, relative when flipped */
+.card-back{
+  position:absolute;inset:0;
+  transform:rotateY(180deg);
+  background:var(--flip-bg);
+  transition:background 0.3s;
+  min-height:220px;
+}
+.card.flipped .card-back{
+  position:relative;
+  inset:auto;
+}
+.card-back{
+  transform:rotateY(180deg);
+  background:var(--flip-bg);
+  transition:background 0.3s;
+}
+
+/* ── TAG ── */
+.tag{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:9px;padding:2px 7px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  margin-bottom:5px;align-self:flex-start;
+  border:1.5px solid transparent;
+}
+.tag-attack{background:var(--tag-attack-bg);color:var(--tag-attack-fg);border-color:var(--tag-attack-bg)}
+.tag-general,.tag-defense,.tag-network,.tag-crypto,.tag-tools,.tag-governance,.tag-identity{background:var(--tag-other-bg);color:var(--tag-other-fg);border-color:var(--tag-other-border)}
+
+/* ── FRONT FACE ── */
+.term{font-size:15px;font-weight:700;color:var(--text);line-height:1.3}
+.urdu-front{font-family:'Noto Nastaliq Urdu',serif;font-size:16px;color:var(--urdu-color);direction:rtl;text-align:right;line-height:1.6;margin-top:2px}
+.hint{font-size:10px;color:var(--text3);margin-top:auto;padding-top:4px;letter-spacing:0.04em}
+
+/* ── BACK FACE ── */
+.def{font-size:13px;color:var(--text);line-height:1.55}
+.urdu-def{font-family:'Noto Nastaliq Urdu',serif;font-size:13px;color:var(--urdu-color);direction:rtl;text-align:right;line-height:1.7;padding:6px 8px;border:1px dashed var(--border);background:var(--bg);margin-top:5px;border-radius:2px}
+.english-line{font-size:11px;color:var(--text2);border-top:1px solid var(--border);padding-top:6px;margin-top:4px;font-style:italic;letter-spacing:0.02em}
+.example{font-size:11px;color:var(--example-color);font-style:italic;border-left:2px solid var(--example-border);padding-left:8px;margin-top:8px;line-height:1.5}
+.flip-hint{font-size:9px;color:var(--text3);text-align:right;margin-top:auto;padding-top:4px;letter-spacing:0.04em}
+
+/* ── KNOWN BUTTON ── */
+.known-btn{
+  position:absolute;bottom:0;right:0;
+  font-family:'JetBrains Mono',monospace;font-size:9px;padding:5px 10px;
+  border:none;border-top:1.5px solid var(--border);border-left:1.5px solid var(--border);
+  background:transparent;color:var(--text3);cursor:pointer;
+  font-weight:700;letter-spacing:0.07em;text-transform:uppercase;
+  transition:all 0.15s;z-index:5;
+}
+.known-btn:hover,.card.known .known-btn{background:var(--accent);color:var(--accent-inv);border-color:var(--accent)}
+
+/* ── URDU TOGGLE BUTTON ── */
+.urdu-toggle-btn{
+  position:absolute;bottom:0;left:0;
+  font-family:'JetBrains Mono',monospace;font-size:9px;padding:5px 10px;
+  border:none;border-top:1.5px solid var(--border);border-right:1.5px solid var(--border);
+  background:transparent;color:var(--text3);cursor:pointer;
+  font-weight:700;letter-spacing:0.07em;text-transform:uppercase;
+  transition:all 0.15s;z-index:5;
+}
+.urdu-toggle-btn:hover{background:var(--bg2);color:var(--text)}
+.urdu-toggle-btn.urdu-visible{color:var(--text2)}
+
+/* ── QUIZ MODE ── */
+.quiz-bar{display:none;background:var(--surface);border:2px solid var(--border-strong);padding:1rem;margin-bottom:1rem;gap:12px;flex-direction:column}
+.quiz-bar.active{display:flex}
+.quiz-q{font-size:13px;color:var(--text);font-weight:700}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.quiz-opt{padding:8px 12px;border:1.5px solid var(--border);background:transparent;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer;text-align:left;transition:all 0.15s;line-height:1.4}
+.quiz-opt:hover:not(:disabled){border-color:var(--border-strong);background:var(--bg2)}
+.quiz-opt.correct{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.dark .quiz-opt.correct{background:#f0f0f0;color:#0d0d0d;border-color:#f0f0f0}
+.quiz-opt.wrong{background:#666;color:#fff;border-color:#666;opacity:0.6}
+.quiz-nav{display:flex;gap:8px;align-items:center;font-size:11px;color:var(--text2)}
+.quiz-score{font-weight:700;color:var(--text)}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:var(--modal-bg);z-index:1000;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.open{display:flex}
+.modal{background:var(--surface);border:2px solid var(--border-strong);padding:1.5rem;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;position:relative}
+.modal-close{position:absolute;top:10px;right:12px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--text3);padding:4px 8px}
+.modal-close:hover{color:var(--text)}
+.modal-term{font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px}
+.modal-urdu{font-family:'Noto Nastaliq Urdu',serif;font-size:20px;color:var(--urdu-color);direction:rtl;text-align:right;margin-bottom:12px;line-height:1.8}
+.modal-def{font-size:14px;color:var(--text);line-height:1.6;margin-bottom:10px}
+.modal-urdu-def{font-family:'Noto Nastaliq Urdu',serif;font-size:14px;color:var(--urdu-color);direction:rtl;text-align:right;line-height:1.8;padding:10px 12px;border:1px dashed var(--border);background:var(--bg2);margin-bottom:10px}
+.modal-example{font-size:12px;color:var(--example-color);font-style:italic;border-left:2px solid var(--example-border);padding-left:10px;line-height:1.5}
+.modal-tag{margin-bottom:12px}
+
+/* ── EMPTY / TOAST ── */
+.empty{text-align:center;padding:3rem;color:var(--text3);font-size:13px;grid-column:1/-1}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--tooltip-bg);color:var(--tooltip-fg);font-size:12px;padding:8px 18px;letter-spacing:0.06em;font-weight:700;opacity:0;transition:all 0.3s;z-index:2000;pointer-events:none;text-transform:uppercase}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── KEYBOARD SHORTCUT LEGEND ── */
+.shortcuts{display:none;background:var(--surface);border:1.5px solid var(--border);padding:10px 14px;margin-bottom:1rem;font-size:10px;color:var(--text2);line-height:2}
+.shortcuts.open{display:block}
+.shortcut-item{display:inline-flex;gap:6px;align-items:center;margin-right:16px}
+.key{background:var(--bg2);border:1.5px solid var(--border);padding:1px 6px;font-size:9px;font-weight:700}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .header{padding:0.75rem 0.75rem 0.5rem}
+  .main{padding:0.75rem}
+  .grid{grid-template-columns:1fr}
+  .quiz-options{grid-template-columns:1fr}
+  .header-actions{gap:4px}
+  .btn{padding:4px 10px;font-size:10px}
+  .card .card-inner{min-height:100px;}
+  .card.flipped .card-inner{min-height:200px;}
+  .card-back{min-height:200px;}
+}
+
+/* ── ANIMATIONS ── */
+@keyframes cardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card{animation:cardIn 0.25s ease both}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.card.flipping{animation:none}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-top">
+    <div class="logo">CyberVocab <span>// سائبر لغت</span></div>
+    <div class="header-actions">
+      <button class="btn btn-sm" id="urduGlobalBtn" onclick="toggleGlobalUrdu()" title="Show/Hide Urdu on all cards">اردو OFF</button>
+      <button class="btn btn-sm" id="quizBtn" onclick="toggleQuiz()">⚡ QUIZ</button>
+      <button class="btn btn-sm" onclick="toggleShortcuts()">⌨ KEYS</button>
+      <button class="btn btn-sm" onclick="resetKnown()">↺ RESET</button>
+      <button class="btn" id="themeBtn" onclick="toggleTheme()">◑ DARK</button>
+    </div>
+  </div>
+  <div class="search-row">
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input class="search-box" type="text" placeholder="Search term, definition, or Urdu translation..." id="search" oninput="onSearch()" autocomplete="off"/>
+      <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕</button>
+    </div>
+  </div>
+  <div class="filter-bar" id="filters"></div>
+  <div class="stats-row">
+    <span id="knownCount">0 known</span>
+    <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <span id="statsText"></span>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main">
+  <!-- SHORTCUTS -->
+  <div class="shortcuts" id="shortcuts">
+    <div class="shortcut-item"><span class="key">SPACE</span> Flip card</div>
+    <div class="shortcut-item"><span class="key">→</span> Next card</div>
+    <div class="shortcut-item"><span class="key">←</span> Prev card</div>
+    <div class="shortcut-item"><span class="key">K</span> Mark known</div>
+    <div class="shortcut-item"><span class="key">U</span> Toggle Urdu</div>
+    <div class="shortcut-item"><span class="key">ESC</span> Clear search</div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <span class="toolbar-label">Sort:</span>
+    <select class="sort-select" id="sortSelect" onchange="render()">
+      <option value="default">Default</option>
+      <option value="az">A → Z</option>
+      <option value="za">Z → A</option>
+      <option value="random">Random</option>
+      <option value="unknown">Unknown first</option>
+    </select>
+    <button class="btn btn-sm" onclick="expandAll()">▣ EXPAND ALL</button>
+    <button class="btn btn-sm" onclick="collapseAll()">▢ COLLAPSE</button>
+    <span style="margin-left:auto;font-size:10px;color:var(--text3);letter-spacing:0.04em">↩ Click cards to flip</span>
+  </div>
+
+  <!-- QUIZ BAR -->
+  <div class="quiz-bar" id="quizBar">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span class="quiz-q" id="quizQ">Quiz</span>
+      <span class="quiz-score" id="quizScore" style="margin-left:auto"></span>
+    </div>
+    <div class="quiz-options" id="quizOptions"></div>
+    <div class="quiz-nav">
+      <button class="btn btn-sm" onclick="nextQuiz()">NEXT →</button>
+      <span id="quizProgress"></span>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid" id="grid"></div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-tag" id="modalTag"></div>
+    <div class="modal-term" id="modalTerm"></div>
+    <div class="modal-urdu" id="modalUrdu"></div>
+    <div class="modal-def" id="modalDef"></div>
+    <div class="modal-urdu-def" id="modalUrduDef"></div>
+    <div class="modal-example" id="modalExample"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════
+//   AUTHOR: Fawad Hassan
+//   LINKEDIN: https://www.linkedin.com/in/fawad-hassan-bba928295/
+//   COPYRIGHT © 2026 Fawad Hassan. All Rights Reserved.
+//   LICENSE: CC BY-NC 4.0 (Attribution-NonCommercial)
+//   Commercial use prohibited without written permission.
+//   For personal/educational use and portfolio display only.
+// ═══════════════════════════════════════════
+
+// ═══════════════════════════════════════════
+//   VOCABULARY DATA
+// ═══════════════════════════════════════════
+const vocab = [
+  // GENERAL / CORE CONCEPTS
+  {term:"CIA Triad",urdu:"رازداری، سالمیت، دستیابی",urduDef:"سیکیورٹی کے تین بنیادی اصول: رازداری، ڈیٹا کی سالمیت، اور دستیابی۔",def:"The three core principles: Confidentiality, Integrity, and Availability.",example:"Every security control maps back to one of the CIA triad pillars.",tag:"general"},
+  {term:"Confidentiality",urdu:"رازداری",urduDef:"ڈیٹا صرف اُنہی لوگوں تک پہنچے جن کو اجازت ہو۔",def:"Ensuring data is only accessible to authorized users.",example:"Encryption protects confidentiality.",tag:"general"},
+  {term:"Integrity",urdu:"سالمیت",urduDef:"ڈیٹا کے ساتھ کسی نے چھیڑ چھاڑ نہ کی ہو۔",def:"Ensuring data has not been tampered with.",example:"Hashing verifies file integrity.",tag:"general"},
+  {term:"Availability",urdu:"دستیابی",urduDef:"جب ضرورت ہو، سسٹم اور ڈیٹا دستیاب ہوں۔",def:"Ensuring systems and data are accessible when needed.",example:"Backups and redundancy protect availability.",tag:"general"},
+  {term:"Vulnerability",urdu:"کمزوری",urduDef:"سسٹم میں وہ خامی جسے حملہ آور فائدہ اٹھا سکے۔",def:"A weakness in a system that can be exploited.",example:"Unpatched software is a vulnerability.",tag:"general"},
+  {term:"Threat",urdu:"خطرہ",urduDef:"وہ ممکنہ خطرہ جو کمزوری کا فائدہ اٹھا سکے۔",def:"Any potential danger that could exploit a vulnerability.",example:"A hacker trying to break in is a threat.",tag:"general"},
+  {term:"Risk",urdu:"خدشہ / رسک",urduDef:"خطرے کے پیش آنے کا امکان اور اس کا نقصان۔",def:"The likelihood and impact of a threat exploiting a vulnerability.",example:"Risk = likelihood × impact.",tag:"general"},
+  {term:"Asset",urdu:"قیمتی چیز / اثاثہ",urduDef:"کوئی بھی ہارڈ ویئر، سافٹ ویئر یا ڈیٹا جس کی تنظیم کو قدر ہو۔",def:"Any resource (hardware, software, data) with value to an organization.",example:"A customer database is a critical asset.",tag:"general"},
+  {term:"Crown Jewels",urdu:"سب سے قیمتی ڈیٹا",urduDef:"تنظیم کا وہ ڈیٹا جسے ہر قیمت پر بچانا ضروری ہو۔",def:"The most critical assets an organization must protect at all costs.",example:"Source code and customer PII are crown jewels.",tag:"general"},
+  {term:"Threat Actor",urdu:"حملہ آور",urduDef:"وہ شخص یا گروہ جو سائبر حملہ کرتا ہے۔",def:"Any individual or group that carries out a cyberattack.",example:"Nation-state hackers, insiders, or script kiddies.",tag:"general"},
+  {term:"Attack Surface",urdu:"حملے کا دائرہ",urduDef:"وہ تمام مقامات جہاں سے حملہ آور سسٹم میں داخل ہو سکتا ہے۔",def:"All possible points where an attacker can try to enter a system.",example:"Every open port increases the attack surface.",tag:"general"},
+  {term:"CVE",urdu:"معروف کمزوری کا نمبر",urduDef:"عوامی سطح پر معلوم سیکیورٹی خامیوں کی فہرست کا نمبر۔",def:"Common Vulnerabilities and Exposures — a public list of known security flaws.",example:"CVE-2021-44228 is the Log4Shell vulnerability.",tag:"general"},
+  {term:"CVSS",urdu:"کمزوری کی شدت کا اسکور",urduDef:"کمزوری کی شدت کو صفر سے دس تک ناپنے کا نظام۔",def:"Common Vulnerability Scoring System — rates vulnerability severity from 0 to 10.",example:"CVSS 9.8 = critical; CVSS 3.1 = low.",tag:"general"},
+  {term:"IOC",urdu:"حملے کی نشانی",urduDef:"وہ شواہد جو بتائیں کہ سسٹم سے سمجھوتہ ہو چکا ہے۔",def:"Indicator of Compromise — evidence that a system has been breached.",example:"An unknown outbound IP in logs is an IOC.",tag:"general"},
+  {term:"TTPs",urdu:"حملہ آوروں کے طریقے",urduDef:"حملہ آوروں کی حکمت عملیاں، تکنیکیں اور طریقے۔",def:"Tactics, Techniques, and Procedures — how threat actors operate.",example:"MITRE ATT&CK documents known TTPs.",tag:"general"},
+  {term:"OSINT",urdu:"عوامی معلومات سے تحقیق",urduDef:"عوامی ذرائع سے معلومات اکٹھی کرنے کا عمل۔",def:"Open Source Intelligence — gathering info from publicly available sources.",example:"Using LinkedIn and Shodan to profile a target.",tag:"general"},
+  {term:"Threat Intelligence",urdu:"خطرات کی معلومات",urduDef:"موجودہ اور ابھرتے سائبر خطرات کے بارے میں جمع کردہ معلومات۔",def:"Collected information about current and emerging cyber threats.",example:"CTI feeds alert you to new malware campaigns.",tag:"general"},
+  {term:"Penetration Testing",urdu:"سیکیورٹی جانچ",urduDef:"اجازت کے ساتھ سسٹم پر جعلی حملہ کر کے کمزوریاں تلاش کرنا۔",def:"Authorized simulated attack on a system to find vulnerabilities.",example:"Hiring ethical hackers to test your network.",tag:"general"},
+  {term:"Red Team",urdu:"حملہ آور ٹیم",urduDef:"وہ ٹیم جو حقیقی حملوں کی نقل کر کے دفاع کا امتحان لیتی ہے۔",def:"A group that simulates real-world attacks to test defenses.",example:"Red team tries to breach the network like a real attacker.",tag:"general"},
+  {term:"Blue Team",urdu:"دفاعی ٹیم",urduDef:"وہ ٹیم جو سسٹم کا دفاع کرتی اور حملوں کا جواب دیتی ہے۔",def:"A group responsible for defending systems and detecting attacks.",example:"Blue team monitors SIEM alerts and responds to incidents.",tag:"general"},
+  {term:"Purple Team",urdu:"مشترکہ ٹیم",urduDef:"ریڈ اور بلیو ٹیم مل کر دفاع بہتر بناتی ہیں۔",def:"Red and blue teams collaborating to improve detection and defenses.",example:"Red shares attack techniques so blue can improve detection.",tag:"general"},
+  {term:"MITRE ATT&CK",urdu:"حملوں کا علمی ڈھانچہ",urduDef:"حملہ آوروں کی تکنیکوں کا عالمی علمی ڈیٹا بیس۔",def:"A globally accessible knowledge base of adversary tactics and techniques.",example:"Used by SOC analysts to map attacker behavior.",tag:"general"},
+  {term:"Kill Chain",urdu:"حملے کے مراحل",urduDef:"سائبر حملے کے مرحلہ وار مراحل کا نمونہ۔",def:"A model describing the stages of a cyberattack from recon to action.",example:"Recon → Weaponize → Deliver → Exploit → Install → C2 → Act.",tag:"general"},
+  {term:"NIST Framework",urdu:"امریکی سیکیورٹی فریم ورک",urduDef:"سائبر سیکیورٹی رسک کے انتظام کے لیے امریکی معیاری فریم ورک۔",def:"A framework of best practices for managing cybersecurity risk.",example:"NIST CSF: Identify, Protect, Detect, Respond, Recover.",tag:"general"},
+  {term:"ISO 27001",urdu:"سیکیورٹی کا عالمی معیار",urduDef:"معلوماتی سیکیورٹی کے انتظام کا بین الاقوامی معیار۔",def:"International standard for managing information security.",example:"Companies get ISO 27001 certified to prove security maturity.",tag:"general"},
+  {term:"GDPR",urdu:"یورپی ڈیٹا قانون",urduDef:"یورپی یونین کا ذاتی ڈیٹا کے تحفظ کا قانون۔",def:"EU law governing personal data protection.",example:"GDPR requires user consent before collecting personal data.",tag:"general"},
+  {term:"HIPAA",urdu:"صحت کا ڈیٹا قانون",urduDef:"امریکی قانون جو مریضوں کی معلومات کی حفاظت کا تقاضا کرتا ہے۔",def:"US law requiring protection of patients' health information.",example:"Hospitals must encrypt patient records under HIPAA.",tag:"general"},
+  {term:"Compliance",urdu:"قوانین کی پابندی",urduDef:"قوانین، ضابطوں اور صنعتی معیارات پر عمل کرنا۔",def:"Adhering to laws, regulations, and industry standards.",example:"PCI-DSS compliance is required for credit card handling.",tag:"general"},
+  {term:"Incident",urdu:"سیکیورٹی واقعہ",urduDef:"ایسا واقعہ جو نقصان پہنچا سکے یا پہنچا چکا ہو۔",def:"A security event that causes or has potential to cause harm.",example:"A malware infection on a workstation is an incident.",tag:"general"},
+  {term:"Business Continuity",urdu:"کاروبار جاری رکھنا",urduDef:"بڑی رکاوٹ کے دوران بھی کاروبار جاری رکھنے کا منصوبہ۔",def:"Plan to keep operations running during a major disruption.",example:"Using backup servers if the primary one fails.",tag:"general"},
+  {term:"Disaster Recovery",urdu:"تباہی کے بعد بحالی",urduDef:"بڑے حادثے کے بعد سسٹم اور ڈیٹا بحال کرنے کا منصوبہ۔",def:"Plan to restore systems and data after a major incident.",example:"Restoring from offsite backups after ransomware.",tag:"general"},
+  {term:"RTO",urdu:"بحالی کا وقت",urduDef:"حادثے کے بعد سسٹم بحال ہونے کی زیادہ سے زیادہ قابل قبول مدت۔",def:"Recovery Time Objective — maximum acceptable downtime after an incident.",example:"RTO of 4 hours means systems back within 4 hours.",tag:"general"},
+  {term:"RPO",urdu:"ڈیٹا بحالی کا ہدف",urduDef:"ڈیٹا نقصان کی وہ زیادہ سے زیادہ مدت جو قابل قبول ہو۔",def:"Recovery Point Objective — maximum acceptable data loss measured in time.",example:"RPO of 1 hour means backups every hour.",tag:"general"},
+  {term:"Residual Risk",urdu:"بچا ہوا خطرہ",urduDef:"حفاظتی اقدامات کے بعد بھی بچا رہنے والا خطرہ۔",def:"The risk that remains after controls have been applied.",example:"Even with a firewall, some risk always remains.",tag:"general"},
+  {term:"Due Diligence",urdu:"پہلے سے جانچ پڑتال",urduDef:"سیکیورٹی فیصلہ کرنے سے پہلے مناسب تحقیق کرنا۔",def:"Proper research and checks performed before a security decision.",example:"Reviewing a vendor's security certifications.",tag:"general"},
+  {term:"Threat Modeling",urdu:"خطرات کا نقشہ",urduDef:"سسٹم کو لاحق ممکنہ خطرات کی منظم شناخت اور ترجیح بندی۔",def:"Structured process to identify and prioritize potential threats.",example:"STRIDE: Spoofing, Tampering, Repudiation, Info Disclosure, DoS, Elevation.",tag:"general"},
+  // ATTACKS
+  {term:"Phishing",urdu:"جعلی پیغام سے دھوکہ",urduDef:"جعلی ای میل یا پیغام جو پاسورڈ چرانے یا میلویئر انسٹال کروانے کے لیے بھیجا جائے۔",def:"A fake email or message designed to steal credentials or install malware.",example:"'Your account is locked — click here to verify.'",tag:"attack"},
+  {term:"Spear Phishing",urdu:"مخصوص ہدف پر حملہ",urduDef:"کسی خاص شخص کو ذاتی معلومات استعمال کر کے بھیجا گیا جعلی پیغام۔",def:"Highly targeted phishing aimed at a specific person using personal details.",example:"Email pretending to be from your company's CEO.",tag:"attack"},
+  {term:"Whaling",urdu:"بڑے افسر پر حملہ",urduDef:"بڑے افسران جیسے CEO یا CFO کو نشانہ بنانے والا فشنگ حملہ۔",def:"Spear phishing specifically targeting senior executives.",example:"Fake legal subpoena email sent to the CFO.",tag:"attack"},
+  {term:"Vishing",urdu:"فون پر دھوکہ",urduDef:"فون کال کے ذریعے دھوکہ دے کر معلومات حاصل کرنا۔",def:"Voice phishing — scamming targets via phone calls.",example:"A caller pretending to be bank support asking for your PIN.",tag:"attack"},
+  {term:"Smishing",urdu:"SMS سے دھوکہ",urduDef:"SMS کے ذریعے بھیجا گیا جعلی لنک یا پیغام۔",def:"SMS phishing — malicious links or requests via text message.",example:"'Your package is held, click to confirm delivery.'",tag:"attack"},
+  {term:"Social Engineering",urdu:"دھوکے سے معلومات لینا",urduDef:"لوگوں کو نفسیاتی چالوں سے خفیہ معلومات دینے پر مجبور کرنا۔",def:"Manipulating people into giving up confidential information.",example:"Phishing emails trick users into revealing passwords.",tag:"attack"},
+  {term:"Malware",urdu:"نقصان دہ سافٹ ویئر",urduDef:"نقصان پہنچانے، رکاوٹ ڈالنے یا غیر اجازت رسائی کے لیے بنایا گیا سافٹ ویئر۔",def:"Malicious software designed to damage, disrupt, or gain access.",example:"Viruses, worms, ransomware are all malware.",tag:"attack"},
+  {term:"Ransomware",urdu:"تاوان والا وائرس",urduDef:"ایسا میلویئر جو ڈیٹا خفیہ کر کے تاوان مانگتا ہے۔",def:"Malware that encrypts victim's data and demands payment.",example:"WannaCry encrypted millions of files and demanded Bitcoin.",tag:"attack"},
+  {term:"Trojan",urdu:"بھیس بدلا وائرس",urduDef:"جائز سافٹ ویئر کی شکل میں چھپا نقصاندہ پروگرام۔",def:"Malware disguised as legitimate software to trick users.",example:"A fake game download that installs a backdoor.",tag:"attack"},
+  {term:"Rootkit",urdu:"چھپا ہوا وائرس",urduDef:"وہ میلویئر جو آپریٹنگ سسٹم میں گہرا چھپ کر مستقل رسائی برقرار رکھتا ہے۔",def:"Malware that hides deep in the OS to maintain persistent invisible access.",example:"Disguises itself as system files, hard to detect.",tag:"attack"},
+  {term:"Worm",urdu:"خود پھیلنے والا وائرس",urduDef:"بغیر صارف کی کسی کارروائی کے خود ہی نیٹ ورک میں پھیلنے والا میلویئر۔",def:"Self-replicating malware that spreads across networks automatically.",example:"WannaCry also used worm behavior to self-propagate.",tag:"attack"},
+  {term:"Keylogger",urdu:"کی بورڈ جاسوس",urduDef:"ہر کی بورڈ کی سٹروک ریکارڈ کرنے والا میلویئر یا ہارڈ ویئر۔",def:"Malware or device that records every keystroke typed.",example:"Captures your password as you type it.",tag:"attack"},
+  {term:"Backdoor",urdu:"چھپا ہوا راستہ",urduDef:"عام تصدیق کو نظر انداز کرنے والا خفیہ رسائی کا راستہ۔",def:"A hidden access method that bypasses normal authentication.",example:"Attackers install backdoors to return later.",tag:"attack"},
+  {term:"Botnet",urdu:"کنٹرول شدہ کمپیوٹروں کا جال",urduDef:"ایک حملہ آور کے زیر کنٹرول متاثرہ کمپیوٹروں کا نیٹ ورک۔",def:"A network of infected computers controlled remotely by an attacker.",example:"Used to launch massive DDoS attacks or send spam.",tag:"attack"},
+  {term:"C2 / C&C",urdu:"حملہ آور کا کنٹرول سرور",urduDef:"وہ سرور جہاں سے حملہ آور متاثرہ مشینوں کو ہدایات بھیجتا ہے۔",def:"Command and Control — attacker's server sending commands to infected machines.",example:"Malware checks in to the C2 server for instructions.",tag:"attack"},
+  {term:"DDoS Attack",urdu:"کئی طرف سے حملہ",urduDef:"بہت سے سسٹموں سے ایک ساتھ حملہ کر کے سسٹم بند کرنا۔",def:"Distributed DoS — coordinated attack launched from many systems simultaneously.",example:"Botnet of 10,000 machines flooding a single target.",tag:"attack"},
+  {term:"Man-in-the-Middle",urdu:"بیچ میں گھس کر سننا",urduDef:"حملہ آور دو فریقوں کے درمیان خفیہ طور پر مواصلات روکتا اور بدلتا ہے۔",def:"Attacker secretly intercepts and alters communication between two parties.",example:"Intercepting login traffic on an unencrypted Wi-Fi.",tag:"attack"},
+  {term:"SQL Injection",urdu:"ڈیٹابیس میں غلط کوڈ",urduDef:"ان پٹ میں غلط SQL کوڈ ڈال کر ڈیٹابیس سے چھیڑ چھاڑ کرنا۔",def:"Inserting malicious SQL code into an input to manipulate the database.",example:"Entering ' OR 1=1 -- in a login field to bypass auth.",tag:"attack"},
+  {term:"Cross-Site Scripting",urdu:"ویب سائٹ میں غلط کوڈ",urduDef:"ویب سائٹ کی کمزوریوں کا فائدہ اٹھا کر دوسرے صارفین پر جاوا اسکرپٹ چلانا۔",def:"XSS — injecting malicious scripts into web pages viewed by users.",example:"Stealing session cookies via a vulnerable comment box.",tag:"attack"},
+  {term:"Zero-Day",urdu:"نامعلوم کمزوری",urduDef:"وہ کمزوری جو ابھی تک نامعلوم ہو اور جس کا کوئی پیچ موجود نہ ہو۔",def:"A vulnerability unknown to the vendor with no patch available yet.",example:"Exploiting a browser bug before Microsoft knows about it.",tag:"attack"},
+  {term:"Brute Force",urdu:"اندازے سے پاسورڈ توڑنا",urduDef:"ہر ممکنہ امتزاج آزما کر پاسورڈ کا اندازہ لگانا۔",def:"Trying every possible combination to crack a password.",example:"Automated tool guessing 10,000 passwords per second.",tag:"attack"},
+  {term:"Credential Stuffing",urdu:"چوری شدہ پاسورڈ آزمانا",urduDef:"ایک جگہ سے چرائے گئے پاسورڈ دوسری سروسز پر آزمانا۔",def:"Using stolen credentials from one breach to attack other services.",example:"Using leaked LinkedIn passwords to try logging into Gmail.",tag:"attack"},
+  {term:"Privilege Escalation",urdu:"اجازت بڑھانا",urduDef:"اصل سے زیادہ رسائی حاصل کرنا، جیسے عام صارف کا ایڈمن بن جانا۔",def:"Gaining higher access rights than originally granted.",example:"A normal user exploiting a kernel bug to get root/admin.",tag:"attack"},
+  {term:"Lateral Movement",urdu:"نیٹ ورک میں پھیلنا",urduDef:"ابتدائی رسائی کے بعد نیٹ ورک میں مزید قیمتی سسٹموں تک پہنچنا۔",def:"Moving through a network after initial compromise to reach more valuable systems.",example:"Using stolen creds to pivot from workstation to server.",tag:"attack"},
+  {term:"Ransomware-as-a-Service",urdu:"کرایے پر رینسم ویئر",urduDef:"رینسم ویئر کو سبسکرپشن پر دوسروں کو استعمال کے لیے دینا۔",def:"RaaS — ransomware groups lease their tools to other criminals for a cut.",example:"LockBit and REvil operated as RaaS platforms.",tag:"attack"},
+  {term:"Fileless Malware",urdu:"فائل کے بغیر وائرس",urduDef:"صرف میموری میں چلنے والا میلویئر جو ڈسک پر فائل نہیں لکھتا۔",def:"Malware that runs entirely in memory without writing files to disk.",example:"PowerShell scripts used to run malicious code in RAM.",tag:"attack"},
+  {term:"Supply Chain Attack",urdu:"سافٹ ویئر سپلائی پر حملہ",urduDef:"سافٹ ویئر تیار یا تقسیم ہونے کے دوران اس میں میلویئر داخل کرنا۔",def:"Compromising software or hardware during development or distribution.",example:"SolarWinds attack injected malware into legitimate updates.",tag:"attack"},
+  {term:"DNS Poisoning",urdu:"DNS میں جعل سازی",urduDef:"DNS کیش خراب کر کے صارفین کو جعلی ویب سائٹ پر بھیجنا۔",def:"Corrupting DNS cache to redirect users to malicious websites.",example:"Users type bank.com but get sent to a fake clone.",tag:"attack"},
+  {term:"Insider Threat",urdu:"اندر کا دشمن",urduDef:"موجودہ یا سابق ملازمین یا شراکت داروں کی طرف سے سیکیورٹی خطرہ۔",def:"A security risk originating from current or former employees or partners.",example:"A disgruntled employee leaking confidential files.",tag:"attack"},
+  {term:"Buffer Overflow",urdu:"میموری حد سے تجاوز",urduDef:"بفر کی گنجائش سے زیادہ ڈیٹا بھیج کر میموری اوور رائٹ کرنا۔",def:"Sending more data than a buffer can hold to overwrite memory and execute code.",example:"Classic technique used to gain shell access on servers.",tag:"attack"},
+  {term:"Pass the Hash",urdu:"ہیش سے لاگ اِن",urduDef:"اصل پاسورڈ جانے بغیر چرائے گئے ہیش سے تصدیق کروانا۔",def:"Using a captured password hash to authenticate without knowing the plaintext.",example:"Attacker captures NTLM hash and replays it for access.",tag:"attack"},
+  // DEFENSE
+  {term:"Mitigate",urdu:"کم کرنا",urduDef:"خطرے کا امکان یا اثر کم کرنا۔",def:"To reduce the impact or likelihood of a risk.",example:"Installing a patch mitigates a vulnerability.",tag:"defense"},
+  {term:"Defense in Depth",urdu:"تہہ در تہہ حفاظت",urduDef:"ایک سے زیادہ حفاظتی تہوں کا استعمال کرنا۔",def:"Using multiple overlapping layers of security controls.",example:"Firewall + IDS + antivirus + MFA = defense in depth.",tag:"defense"},
+  {term:"Zero Trust",urdu:"کسی پر بھروسہ نہیں",urduDef:"سیکیورٹی ماڈل جس میں ہر صارف اور ڈیوائس کی مسلسل تصدیق ضروری ہے۔",def:"Security model requiring continuous verification — never trust, always verify.",example:"Even internal employees must re-authenticate for every resource.",tag:"defense"},
+  {term:"Least Privilege",urdu:"کم سے کم اجازت",urduDef:"صارفین کو صرف اتنی رسائی دینا جتنی ان کے کام کے لیے ضروری ہو۔",def:"Users should have only the minimum access required to do their job.",example:"A receptionist should not have admin rights.",tag:"defense"},
+  {term:"MFA",urdu:"دوہری تصدیق",urduDef:"تصدیق کے دو یا زیادہ طریقے استعمال کرنا۔",def:"Multi-Factor Authentication — requiring two or more verification methods.",example:"Password + SMS code + fingerprint = MFA.",tag:"defense"},
+  {term:"Patch Management",urdu:"اپڈیٹ کا انتظام",urduDef:"سافٹ ویئر پیچ شناخت، جانچ اور اطلاق کا منظم عمل۔",def:"Process of identifying, testing, and applying software patches consistently.",example:"Automated patch management ensures no system is left behind.",tag:"defense"},
+  {term:"Hardening",urdu:"سسٹم مضبوط بنانا",urduDef:"غیر ضروری خصوصیات ہٹا کر اور غلط ترتیبات ٹھیک کر کے حملے کا دائرہ کم کرنا۔",def:"Reducing attack surface by removing unneeded features and fixing misconfigs.",example:"Disabling Telnet, closing unused ports, removing guest accounts.",tag:"defense"},
+  {term:"Incident Response",urdu:"واقعے کا جواب",urduDef:"سیکیورٹی واقعات کو پہچاننے، روکنے اور بحال کرنے کا منظم عمل۔",def:"Structured process for detecting, containing, and recovering from incidents.",example:"IR team isolates the infected machine and preserves evidence.",tag:"defense"},
+  {term:"Forensics",urdu:"ڈیجیٹل تحقیقات",urduDef:"سیکیورٹی واقعے کے بعد ڈیجیٹل شواہد جمع اور تجزیہ کرنا۔",def:"Collecting and analyzing digital evidence after a security incident.",example:"Imaging hard drives to reconstruct how a breach happened.",tag:"defense"},
+  {term:"Honeypot",urdu:"جھانسے کا نظام",urduDef:"حملہ آوروں کو لالچ دینے کے لیے بنایا گیا جعلی نظام۔",def:"A decoy system designed to attract attackers and study their methods.",example:"Fake database server that logs every query from attackers.",tag:"defense"},
+  {term:"Sandboxing",urdu:"الگ محفوظ ماحول",urduDef:"غیر بھروسہ مند کوڈ کو الگ ماحول میں چلانا تاکہ نقصان نہ ہو۔",def:"Running untrusted code in an isolated environment to prevent damage.",example:"Suspicious email attachments detonated in a sandbox first.",tag:"defense"},
+  {term:"Data Loss Prevention",urdu:"ڈیٹا چوری روکنا",urduDef:"حساس ڈیٹا کو تنظیم سے باہر جانے سے روکنے کے اوزار اور پالیسیاں۔",def:"Tools and policies preventing sensitive data from leaving the organization.",example:"DLP blocks emailing files containing credit card numbers.",tag:"defense"},
+  {term:"Audit Log",urdu:"سرگرمیوں کا ریکارڈ",urduDef:"سسٹم کی سرگرمیوں اور صارف کی کارروائیوں کا تاریخی ریکارڈ۔",def:"A chronological record of system events and user actions.",example:"Shows who accessed which file and at what time.",tag:"defense"},
+  {term:"Access Control",urdu:"رسائی کا کنٹرول",urduDef:"یہ طے کرنے کی پالیسیاں اور طریقے کہ کون کیا دیکھ سکتا ہے۔",def:"Policies and mechanisms restricting who can access what resources.",example:"Only HR staff can open salary files.",tag:"defense"},
+  {term:"Security Awareness Training",urdu:"سیکیورٹی تربیت",urduDef:"ملازمین کو سیکیورٹی خطرات پہچاننا اور جواب دینا سکھانا۔",def:"Teaching employees to recognize and respond to security threats.",example:"Annual phishing simulation and training for all staff.",tag:"defense"},
+  {term:"Backup",urdu:"ڈیٹا کی نقل",urduDef:"ڈیٹا نقصان کے بعد بحالی کے لیے الگ رکھی گئی کاپی۔",def:"A copy of data stored separately to enable recovery after loss or attack.",example:"3-2-1 rule: 3 copies, 2 media types, 1 offsite.",tag:"defense"},
+  {term:"Chain of Custody",urdu:"ثبوت کا ریکارڈ",urduDef:"ڈیجیٹل شواہد کو کس نے کب سنبھالا اس کا دستاویزی ریکارڈ۔",def:"Documented record of who handled digital evidence and when.",example:"Required to make forensic evidence admissible in court.",tag:"defense"},
+  {term:"Separation of Duties",urdu:"ذمہ داریوں کی تقسیم",urduDef:"اہم کام ایک سے زیادہ افراد میں تقسیم کر کے دھوکہ روکنا۔",def:"Dividing critical tasks among multiple people to prevent fraud.",example:"The person approving payments cannot also process them.",tag:"defense"},
+  // NETWORK SECURITY
+  {term:"Firewall",urdu:"حفاظتی دیوار",urduDef:"طے شدہ قواعد کے مطابق نیٹ ورک ٹریفک فلٹر کرنے والا نظام۔",def:"Filters incoming and outgoing network traffic based on defined rules.",example:"Blocks all inbound traffic on port 23 (Telnet).",tag:"network"},
+  {term:"IDS",urdu:"مشکوک سرگرمی پکڑنا",urduDef:"نیٹ ورک ٹریفک مانیٹر کر کے خطرات پر الرٹ بھیجنے والا نظام۔",def:"Intrusion Detection System — monitors traffic and raises alerts on threats.",example:"Alerts when it detects a port scan.",tag:"network"},
+  {term:"IPS",urdu:"حملہ روکنے والا",urduDef:"خطرات مانیٹر کر کے فعال طور پر بلاک کرنے والا نظام۔",def:"Intrusion Prevention System — monitors and actively blocks detected threats.",example:"Automatically drops packets matching attack signatures.",tag:"network"},
+  {term:"VPN",urdu:"خفیہ انٹرنیٹ سرنگ",urduDef:"کلائنٹ اور نیٹ ورک کے درمیان خفیہ سرنگ۔",def:"Virtual Private Network — encrypted tunnel between client and network.",example:"Remote employees use VPN to securely access internal resources.",tag:"network"},
+  {term:"DMZ",urdu:"درمیانی محفوظ زون",urduDef:"عوامی سرورز رکھنے کے لیے الگ تھلگ نیٹ ورک زون۔",def:"Demilitarized Zone — isolated network segment hosting public-facing servers.",example:"Web and email servers live in the DMZ.",tag:"network"},
+  {term:"VLAN",urdu:"الگ ورچوئل نیٹ ورک",urduDef:"جسمانی علیحدگی کے بغیر نیٹ ورک کو منطقی طور پر تقسیم کرنا۔",def:"Virtual LAN — logically separates network segments without physical separation.",example:"HR and Finance on separate VLANs for isolation.",tag:"network"},
+  {term:"DNS",urdu:"نام سے پتہ ڈھونڈنا",urduDef:"ڈومین نام کو IP ایڈریس میں تبدیل کرنے کا نظام۔",def:"Domain Name System — translates domain names to IP addresses.",example:"google.com → 142.250.80.46.",tag:"network"},
+  {term:"WAF",urdu:"ویب حفاظتی دیوار",urduDef:"ویب ایپلیکیشن پر آنے والی نقصاندہ HTTP ٹریفک فلٹر کرنا۔",def:"Web Application Firewall — filters malicious HTTP traffic to web apps.",example:"Blocks SQL injection and XSS attempts automatically.",tag:"network"},
+  {term:"Packet Sniffing",urdu:"ڈیٹا پیکٹ پکڑنا",urduDef:"نیٹ ورک پر سفر کرتے ڈیٹا پیکٹ پکڑ کر جانچنا۔",def:"Capturing and inspecting data packets traveling over a network.",example:"Wireshark captures all packets on an interface.",tag:"network"},
+  {term:"SSH",urdu:"محفوظ ریموٹ رسائی",urduDef:"ریموٹ کمانڈ لائن رسائی کا خفیہ پروٹوکول۔",def:"Secure Shell — encrypted protocol for remote command-line access.",example:"ssh admin@192.168.1.1 to connect securely.",tag:"network"},
+  {term:"Port Scanning",urdu:"کھلے دروازے ڈھونڈنا",urduDef:"کون سی سروسز چل رہی ہیں یہ جاننے کے لیے پورٹس کی جانچ کرنا۔",def:"Probing a system's ports to discover which services are running.",example:"nmap -sV 192.168.1.1 reveals open services.",tag:"network"},
+  {term:"Network Segmentation",urdu:"نیٹ ورک تقسیم",urduDef:"حملے کے پھیلاو کو روکنے کے لیے نیٹ ورک کو الگ حصوں میں تقسیم کرنا۔",def:"Dividing a network into isolated zones to limit spread of attacks.",example:"Separating POS systems from corporate network.",tag:"network"},
+  {term:"RDP",urdu:"ریموٹ ڈیسک ٹاپ",urduDef:"ونڈوز سسٹم تک دور سے گرافیکل رسائی کا پروٹوکول۔",def:"Remote Desktop Protocol — allows remote graphical access to Windows systems.",example:"Port 3389; frequently targeted by attackers.",tag:"network"},
+  {term:"HTTPS",urdu:"محفوظ ویب",urduDef:"TLS سے خفیہ کردہ HTTP، ٹرانزٹ میں ڈیٹا محفوظ رکھتا ہے۔",def:"HTTP Secure — HTTP encrypted with TLS to protect data in transit.",example:"The padlock icon in your browser means HTTPS is active.",tag:"network"},
+  {term:"Proxy Server",urdu:"درمیانی سرور",urduDef:"کلائنٹس اور انٹرنیٹ کے درمیان درمیانی سرور کام کرتا ہے۔",def:"A server acting as intermediary between clients and the internet.",example:"Corporate proxies filter, cache, and log all web traffic.",tag:"network"},
+  // CRYPTOGRAPHY
+  {term:"Encryption",urdu:"خفیہ کاری",urduDef:"کلید استعمال کر کے ڈیٹا کو ناقابل پڑھ سائفر ٹیکسٹ میں بدلنا۔",def:"Converting plaintext data into unreadable ciphertext using a key.",example:"AES-256 encrypts files so only the key holder can read them.",tag:"crypto"},
+  {term:"Hashing",urdu:"منفرد نشان بنانا",urduDef:"ڈیٹا کو مقررہ لمبائی کے خلاصے میں بدلنے والا یک طرفہ عمل۔",def:"One-way function converting data into a fixed-length digest; not reversible.",example:"SHA-256 produces a unique 256-bit hash of any file.",tag:"crypto"},
+  {term:"Digital Signature",urdu:"ڈیجیٹل دستخط",urduDef:"پیغام کی اصلیت اور بھیجنے والے کی شناخت کا کرپٹوگرافک ثبوت۔",def:"Cryptographic proof of message authenticity and sender identity.",example:"Verifies email was sent by the claimed sender and not altered.",tag:"crypto"},
+  {term:"PKI",urdu:"ڈیجیٹل سرٹیفکیٹ کا نظام",urduDef:"ڈیجیٹل سرٹیفکیٹ اور کلیدیں منظم کرنے کا ڈھانچہ۔",def:"Public Key Infrastructure — framework for managing digital certificates and keys.",example:"HTTPS uses PKI to verify website identities.",tag:"crypto"},
+  {term:"Symmetric Encryption",urdu:"ایک چابی والی خفیہ کاری",urduDef:"خفیہ کاری اور ڈی کرپشن دونوں کے لیے ایک ہی کلید استعمال ہوتی ہے۔",def:"The same key is used for both encryption and decryption.",example:"AES is the most common symmetric cipher.",tag:"crypto"},
+  {term:"Asymmetric Encryption",urdu:"دو چابیوں والی خفیہ کاری",urduDef:"عوامی کلید خفیہ کرتی ہے، نجی کلید ڈی کرپٹ کرتی ہے۔",def:"Public key encrypts; private key decrypts (or vice versa for signing).",example:"RSA is used in HTTPS, SSH, and email signing.",tag:"crypto"},
+  {term:"SSL/TLS",urdu:"انٹرنیٹ پر خفیہ رابطہ",urduDef:"براؤزر اور ویب سرور کے درمیان مواصلات کو خفیہ کرنے والے پروٹوکول۔",def:"Protocols that encrypt communication between browser and web server.",example:"TLS 1.3 is the current secure version; SSL is deprecated.",tag:"crypto"},
+  {term:"AES",urdu:"محفوظ خفیہ کاری کا طریقہ",urduDef:"ڈیٹا خفیہ کاری کا عالمی معیار بن چکا سمیٹرک بلاک سائفر۔",def:"Advanced Encryption Standard — widely used symmetric block cipher.",example:"AES-256 is the gold standard for data encryption.",tag:"crypto"},
+  {term:"SHA-256",urdu:"محفوظ ہیش طریقہ",urduDef:"256 بٹ ہیش پیدا کرنے والا محفوظ ہیشنگ الگورتھم۔",def:"Secure Hash Algorithm producing a 256-bit hash; widely used today.",example:"Git and Bitcoin both use SHA-256.",tag:"crypto"},
+  {term:"Salt",urdu:"ہیش میں اضافی ڈیٹا",urduDef:"رینبو ٹیبل حملوں سے بچنے کے لیے ہیشنگ سے پہلے پاسورڈ میں بے ترتیب ڈیٹا ملانا۔",def:"Random data added to a password before hashing to prevent rainbow table attacks.",example:"'hello'+salt'7fz9' → unique hash different from unsalted.",tag:"crypto"},
+  {term:"Non-repudiation",urdu:"انکار نہ کر سکنا",urduDef:"کوئی فریق کسی کام کے بعد اس سے انکار نہ کر سکے۔",def:"Ensuring a party cannot deny performing an action after the fact.",example:"Digital signatures provide non-repudiation.",tag:"crypto"},
+  {term:"Certificate Authority",urdu:"سرٹیفکیٹ جاری کرنے والا",urduDef:"ڈیجیٹل سرٹیفکیٹ جاری کرنے اور دستخط کرنے والا قابل بھروسہ ادارہ۔",def:"Trusted entity that issues and signs digital certificates.",example:"Let's Encrypt provides free TLS certificates.",tag:"crypto"},
+  // SOC / TOOLS
+  {term:"SIEM",urdu:"مرکزی نگرانی کا نظام",urduDef:"سیکیورٹی لاگ جمع اور تجزیہ کرنے کا نظام۔",def:"Security Information and Event Management — aggregates and analyzes security logs.",example:"Wazuh and Splunk are popular open and commercial SIEMs.",tag:"tools"},
+  {term:"SOC",urdu:"سیکیورٹی آپریشن سنٹر",urduDef:"چوبیس گھنٹے خطرات مانیٹر اور ان کا جواب دینے والی ٹیم۔",def:"Security Operations Center — team monitoring and responding to threats 24/7.",example:"A SOC analyst triages SIEM alerts and escalates incidents.",tag:"tools"},
+  {term:"EDR",urdu:"اینڈ پوائنٹ نگرانی",urduDef:"اینڈ پوائنٹ سرگرمیوں کی مسلسل نگرانی اور جواب کا نظام۔",def:"Endpoint Detection and Response — continuous monitoring of endpoint activity.",example:"CrowdStrike Falcon detects and isolates infected laptops.",tag:"tools"},
+  {term:"SOAR",urdu:"خودکار واقعہ جواب",urduDef:"واقعوں کے جواب کو خودکار بنانے کا نظام۔",def:"Security Orchestration, Automation, and Response — automates incident response.",example:"Auto-blocks an IP after SIEM detects brute force.",tag:"tools"},
+  {term:"Wireshark",urdu:"ٹریفک پکڑنے والا",urduDef:"نیٹ ورک پیکٹ پکڑ کر جانچنے والا اوپن سورس اوزار۔",def:"Open-source network packet analyzer for capturing and inspecting traffic.",example:"Capture all HTTP packets to see plaintext credentials.",tag:"tools"},
+  {term:"Nmap",urdu:"نیٹ ورک اسکینر",urduDef:"ہوسٹ، کھلی پورٹس اور سروسز دریافت کرنے والا اوزار۔",def:"Network mapper — discovers hosts, open ports, and running services.",example:"nmap -sV -O 192.168.1.0/24",tag:"tools"},
+  {term:"Burp Suite",urdu:"ویب ٹیسٹ ٹول",urduDef:"HTTP ٹریفک روکنے والا ویب سیکیورٹی ٹیسٹنگ پراکسی۔",def:"Web security testing proxy for intercepting HTTP traffic.",example:"Used to find XSS and SQLi vulnerabilities in web apps.",tag:"tools"},
+  {term:"Wazuh",urdu:"اوپن سورس SIEM",urduDef:"لاگ تجزیہ اور خطرات کا پتہ لگانے کا اوپن سورس SIEM اور XDR پلیٹ فارم۔",def:"Open-source SIEM and XDR platform for log analysis and threat detection.",example:"Deploy Wazuh agent on endpoints to ship logs to manager.",tag:"tools"},
+  {term:"Nessus",urdu:"کمزوری ڈھونڈنے والا",urduDef:"سسٹموں میں CVEs شناخت کرنے والا مشہور vulnerability scanner۔",def:"Widely used vulnerability scanner that identifies CVEs in systems.",example:"Nessus scans report severity ratings for each finding.",tag:"tools"},
+  {term:"Splunk",urdu:"لاگ تجزیہ کار",urduDef:"مشین جنریٹڈ ڈیٹا تلاش، مانیٹر اور تجزیہ کرنے کا پلیٹ فارم۔",def:"Platform for searching, monitoring, and analyzing machine-generated data.",example:"Used by enterprise SOCs for log analysis and dashboards.",tag:"tools"},
+  {term:"Metasploit",urdu:"حملے کا فریم ورک",urduDef:"معلوم exploits کے ماڈیولز کے ساتھ پینیٹریشن ٹیسٹنگ فریم ورک۔",def:"Penetration testing framework with modules for known exploits.",example:"msfconsole to launch exploit against a CVE.",tag:"tools"},
+  {term:"Snort",urdu:"نیٹ ورک خطرہ پکڑنے والا",urduDef:"اوپن سورس نیٹ ورک IDS/IPS جو rule-based signature detection استعمال کرتا ہے۔",def:"Open-source network IDS/IPS using rule-based signature detection.",example:"Snort rule alerts on known attack patterns in traffic.",tag:"tools"},
+  {term:"Hashcat",urdu:"ہیش توڑنے والا",urduDef:"GPU سے تیز رفتار پاسورڈ کریکر۔",def:"GPU-accelerated password cracker supporting many hash types.",example:"Cracks MD5 hashes at billions of attempts per second.",tag:"tools"},
+  // IDENTITY & ACCESS
+  {term:"Authentication",urdu:"شناخت کی تصدیق",urduDef:"صارف، ڈیوائس یا سسٹم کی شناخت تصدیق کرنا۔",def:"Verifying the identity of a user, device, or system.",example:"Username + password = basic authentication.",tag:"identity"},
+  {term:"Authorization",urdu:"اجازت دینا",urduDef:"تصدیق کے بعد مخصوص رسائی حقوق دینا یا روکنا۔",def:"Granting or denying specific access rights after authentication.",example:"Admin role gets more authorization than a basic user.",tag:"identity"},
+  {term:"MFA",urdu:"دو قدمی تصدیق",urduDef:"تصدیق کے دو یا زیادہ طریقے — کچھ جو آپ جانتے ہیں، کچھ جو آپ کے پاس ہے، کچھ جو آپ ہیں۔",def:"Multi-Factor Authentication — two or more independent verification factors.",example:"Password + Google Authenticator OTP.",tag:"identity"},
+  {term:"SSO",urdu:"ایک بار لاگ اِن",urduDef:"ایک بار لاگ اِن کر کے متعدد سسٹموں تک رسائی۔",def:"Single Sign-On — one login grants access to multiple systems.",example:"Log into Google once to access Gmail, Drive, and YouTube.",tag:"identity"},
+  {term:"IAM",urdu:"شناخت کا انتظام",urduDef:"ڈیجیٹل شناختیں اور اجازتیں منظم کرنا۔",def:"Identity and Access Management — managing digital identities and permissions.",example:"AWS IAM controls who can access which cloud resources.",tag:"identity"},
+  {term:"PAM",urdu:"خاص اجازت کا انتظام",urduDef:"ایڈمن سطح کے اکاؤنٹس کو کنٹرول اور مانیٹر کرنا۔",def:"Privileged Access Management — controls and monitors admin-level accounts.",example:"All root logins go through PAM with session recording.",tag:"identity"},
+  {term:"Role-Based Access Control",urdu:"کردار کی بنیاد پر رسائی",urduDef:"رسائی حقوق افراد کی بجائے کام کے کرداروں کی بنیاد پر دینا۔",def:"RBAC — access rights assigned based on job roles.",example:"All 'Analysts' get read access; 'Admins' get full access.",tag:"identity"},
+  {term:"OAuth",urdu:"تیسرے کو اجازت",urduDef:"تیسری پارٹی ایپس کو محدود رسائی دینے کا اوپن فریم ورک۔",def:"Open authorization framework allowing third-party apps limited access.",example:"'Sign in with Google' uses OAuth.",tag:"identity"},
+  {term:"Biometrics",urdu:"جسمانی شناخت",urduDef:"انگلیوں کے نشان یا چہرہ جیسی منفرد جسمانی خصوصیات سے تصدیق۔",def:"Authentication using unique physical traits like fingerprints or face.",example:"iPhone Face ID uses biometric authentication.",tag:"identity"},
+  // GOVERNANCE
+  {term:"Risk Assessment",urdu:"خطرات کا جائزہ",urduDef:"تنظیمی اثاثوں کو لاحق خطرات کی شناخت اور جائزہ۔",def:"Identifying and evaluating risks to organizational assets.",example:"Mapping threats to critical systems and scoring impact.",tag:"governance"},
+  {term:"Security Policy",urdu:"سیکیورٹی کی پالیسی",urduDef:"سیکیورٹی قواعد اور توقعات کی تعریف کرنے والی باضابطہ دستاویز۔",def:"Formal document defining security rules for an organization.",example:"Acceptable Use Policy tells employees what they can do.",tag:"governance"},
+  {term:"Data Classification",urdu:"ڈیٹا کی درجہ بندی",urduDef:"حساسیت کی سطح کے مطابق ڈیٹا کو لیبل کرنا۔",def:"Labeling data by sensitivity level to apply appropriate controls.",example:"Top Secret, Confidential, Internal, Public.",tag:"governance"},
+  {term:"BIA",urdu:"کاروباری اثر کا تجزیہ",urduDef:"اہم عمل اور رکاوٹ کے اثر کی شناخت کرنا۔",def:"Business Impact Analysis — identifies critical processes and impact of disruptions.",example:"BIA shows payroll system must recover within 2 hours.",tag:"governance"},
+  {term:"SLA",urdu:"سروس کا معاہدہ",urduDef:"اپ ٹائم، جواب کے اوقات اور سپورٹ پر باضابطہ وعدہ۔",def:"Service Level Agreement — formal commitment on uptime and response times.",example:"99.9% uptime SLA = max 8.7 hours downtime per year.",tag:"governance"},
+  {term:"Third-Party Risk",urdu:"باہری خطرہ",urduDef:"وینڈرز، سپلائرز یا شراکت داروں کی طرف سے متعارف کردہ سیکیورٹی خطرات۔",def:"Security risks introduced by vendors, suppliers, or partners.",example:"A vendor's breach can expose your customer data too.",tag:"governance"},
+  {term:"GRC",urdu:"گورننس، رسک، تعمیل",urduDef:"گورننس، رسک مینجمنٹ اور تعمیل کو یکجا کرنے کا فریم ورک۔",def:"Governance, Risk, and Compliance — integrated framework for managing all three.",example:"GRC tools like ServiceNow help centralize risk tracking.",tag:"governance"},
+  // NEW ATTACK VECTORS
+  {term:"Phishing",urdu:"بہانے سے ٹھگی",urduDef:"ای میل یا میسج کے ذریعے صارفین کو فریب دے کر اطلاعات چرانا۔",def:"Fraudulent attempt to trick users into revealing sensitive info via deceptive communication.",example:"Fake email from 'bank' asking for password reset.",tag:"attack"},
+  {term:"Spear Phishing",urdu:"مقصود شدہ ٹھگی",urduDef:"کسی خاص شخص یا کمپنی کو نشانہ بناتے ہوئے حملہ۔",def:"Targeted phishing attack aimed at specific individuals or organizations.",example:"Email spoofing CEO to wire money to fake account.",tag:"attack"},
+  {term:"Whaling",urdu:"بڑے مچھلی پکڑنا",urduDef:"اعلیٰ حکام (C-level executives) کو نشانہ بناتے ہوئے phishing۔",def:"Phishing attack targeting high-level executives (C-level).",example:"Scammers impersonate board chairman asking for urgent payment.",tag:"attack"},
+  {term:"Social Engineering",urdu:"سماجی ہیرا پھیری",urduDef:"حملہ آور لوگوں کو دھوکا یا جبر سے معلومات بتانے پر مجبور کرتا ہے۔",def:"Manipulating people into divulging confidential information or bypassing security.",example:"Calling IT pretending to be employee; asking for password.",tag:"attack"},
+  {term:"Shoulder Surfing",urdu:"کندھے سے دیکھنا",urduDef:"کسی شخص کے کندھے کے پیچھے سے ان کی سکرین دیکھنا۔",def:"Looking over someone's shoulder to steal information they're typing.",example:"In café, watching someone enter credit card number.",tag:"attack"},
+  {term:"Dumpster Diving",urdu:"کوڑے میں تلاش",urduDef:"شناخت کی معلومات حاصل کرنے کے لیے کوڑے کی ٹوکری میں تلاش کرنا۔",def:"Searching trash for documents containing sensitive information.",example:"Finding shredded documents with account numbers.",tag:"attack"},
+  {term:"Reverse Shell",urdu:"الٹا شیل",urduDef:"متاثرہ سسٹم جو حملہ آور کے کمپیوٹر سے منسلک ہو کر کمانڈ لیتا ہے۔",def:"Compromised system connects back to attacker's machine for command execution.",example:"Victim's machine sends reverse shell to attacker:192.168.1.100:4444.",tag:"attack"},
+  {term:"Web Shell",urdu:"ویب انٹرفیس والا کنٹرول",urduDef:"ویب سرور پر اپ لوڈ کردہ فائل جو دور سے سسٹم کنٹرول دیتی ہے۔",def:"Backdoor uploaded to web server; allows remote command execution.",example:"PHP web shell c99.php for post-exploitation access.",tag:"attack"},
+  {term:"Credential Stuffing",urdu:"نقل شدہ پاس ورڈ استعمال",urduDef:"ایک جگہ سے چوری شدہ صارف نام/پاس ورڈ دوسری جگہوں پر آزمانا۔",def:"Using credentials stolen from one breach to access other accounts.",example:"Credentials from LinkedIn breach tried on Gmail, Twitter, etc.",tag:"attack"},
+  {term:"Session Hijacking",urdu:"سیشن کو ہائی جیک کرنا",urduDef:"حملہ آور کسی کے سیشن ٹوکن کو چرا کر ان کے اکاؤنٹ پر قابو پاتا ہے۔",def:"Attacker steals or intercepts session token to impersonate user.",example:"Stealing cookies from browser to access user account.",tag:"attack"},
+  {term:"Man-in-the-Browser",urdu:"براؤزر میں درمیانی شخص",urduDef:"صارف کے براؤزر میں malware جو transactions میں تبدیلی کرتا ہے۔",def:"Malware in browser intercepting and modifying transactions.",example:"Banking Trojan changes transfer amount after user clicks confirm.",tag:"attack"},
+  // NEW DEFENSE CONCEPTS
+  {term:"Defense in Depth",urdu:"تہہ داری سے سیکیورٹی",urduDef:"ایک طریقہ نہیں بلکہ متعدد حفاظتی تہہیں رکھنا۔",def:"Multiple overlapping security layers to stop breaches.",example:"Network firewall + host firewall + EDR + SIEM.",tag:"defense"},
+  {term:"Threat Modeling",urdu:"خطرات کی تصویر کشی",urduDef:"ممکنہ حملوں کی منظم تجزیہ اور منصوبہ بندی۔",def:"Systematic identification of potential attacks on system.",example:"STRIDE model: Spoofing, Tampering, Repudiation, Info Disclosure, DoS, Elevation.",tag:"defense"},
+  {term:"Vulnerability Scanning",urdu:"کمزوریوں کا خودکار اسکین",urduDef:"خود کار طریقے سے معروف کمزوریوں اور غلط ترتیبات تلاش کریں۔",def:"Automated detection of known vulnerabilities in systems.",example:"Nessus, OpenVAS, Qualys scan networks regularly.",tag:"defense"},
+  {term:"Penetration Testing",urdu:"اجازت سے حملہ ٹیسٹنگ",urduDef:"اہل حکام سے اجازت لے کر سسٹم کو ٹیسٹ کریں۔",def:"Authorized simulated attack to find and validate vulnerabilities.",example:"Professional pentest: $5K-50K depending on scope.",tag:"defense"},
+  {term:"Security Hardening",urdu:"سیکیورٹی کو مضبوط بنانا",urduDef:"غیر ضروری خصوصیات بند کر کے غلط ترتیبات ٹھیک کریں۔",def:"Strengthening a system by removing unnecessary features and fixing misconfigurations.",example:"Disable Telnet, remove guest account, require complex passwords.",tag:"defense"},
+  {term:"Incident Response Plan",urdu:"حادثے کے جواب کی منصوبہ بندی",urduDef:"سیکیورٹی حادثے پر کیا کریں اس کی پہلے سے بنی ہوئی منصوبہ۔",def:"Pre-documented procedures for responding to security incidents.",example:"IR plan: detection → triage → containment → eradication → recovery.",tag:"defense"},
+  {term:"Disaster Recovery",urdu:"نقصان سے بحالی",urduDef:"بڑے نقصان سے سسٹم دوبارہ کام کرنے کی منصوبہ بندی۔",def:"Plan for recovering systems and data after major disaster.",example:"Off-site backups enable recovery after ransomware attack.",tag:"defense"},
+  {term:"Business Continuity",urdu:"کاروبار جاری رکھنا",urduDef:"حادثے کے دوران کاروبار جاری رکھنے کی حکمت عملی۔",def:"Strategy for keeping business running during disruption.",example:"DR site with live failover to continue operations.",tag:"defense"},
+  // NEW NETWORK CONCEPTS
+  {term:"TCP/IP",urdu:"انٹرنیٹ کا پروٹوکول",urduDef:"انٹرنیٹ پر ڈیٹا بھیجنے اور وصول کرنے کا بنیادی پروٹوکول۔",def:"Fundamental internet protocol suite enabling all network communication.",example:"Packets use TCP (reliable) or UDP (fast) for delivery.",tag:"network"},
+  {term:"DNS Spoofing",urdu:"DNS میں جعل ساز",urduDef:"DNS سرور کو غلط IP ایڈریس دینے کے لیے حملہ۔",def:"Tricking user's DNS to resolve domain to wrong IP.",example:"Attacker redirects victim from bank.com to fake-bank.com.",tag:"attack"},
+  {term:"ARP Spoofing",urdu:"ARP میں جعل ساز",urduDef:"نیٹ ورک میں متھا ہوا IP ایڈریس کے ذریعے ٹریفک روکنا۔",def:"Impersonating another IP address to intercept network traffic.",example:"Man-in-the-middle attack on local network.",tag:"attack"},
+  {term:"Subnet Mask",urdu:"نیٹ ورک کا نقاب",urduDef:"IP ایڈریس کے کون سے حصے نیٹ ورک ہیں یہ بتاتا ہے۔",def:"Identifies which part of IP address is network and which is host.",example:"255.255.255.0 means first 3 octets are network.",tag:"network"},
+  {term:"NAT",urdu:"پتے کی تبدیلی",urduDef:"نجی IP کو عوامی IP میں تبدیل کر کے انٹرنیٹ سے جڑنا۔",def:"Network Address Translation converts private IPs to public for internet access.",example:"Home router uses NAT to share single public IP.",tag:"network"},
+  {term:"Subnetting",urdu:"نیٹ ورک کی تقسیم",urduDef:"بڑے نیٹ ورک کو چھوٹے حصوں میں تقسیم کرنا۔",def:"Dividing a network into smaller logical subnetworks.",example:"10.0.0.0/24 creates 256 IP addresses per subnet.",tag:"network"},
+  // NEW CRYPTOGRAPHY CONCEPTS
+  {term:"RSA",urdu:"RSA خفیہ کاری",urduDef:"عوامی اور نجی کلید کی خفیہ کاری جو HTTPS، SSH میں استعمال ہوتی ہے۔",def:"Asymmetric encryption algorithm widely used in HTTPS and SSH.",example:"RSA 2048-bit keys are standard; 4096-bit is stronger.",tag:"crypto"},
+  {term:"ECC",urdu:"بیضوی منحنی خفیہ کاری",urduDef:"RSA سے زیادہ موثر asymmetric encryption طریقہ۔",def:"Elliptic Curve Cryptography; efficient asymmetric encryption.",example:"Used in modern protocols and Bitcoin.",tag:"crypto"},
+  {term:"DH",urdu:"ڈیفی ہیلمین کلید کا تبادلہ",urduDef:"دونوں فریقین محفوظ طریقے سے مشترک خفیہ بناتے ہیں۔",def:"Diffie-Hellman protocol for secure key exchange.",example:"Used in VPNs and instant messaging encryption.",tag:"crypto"},
+  {term:"PBKDF2",urdu:"پاس ورڈ سے کلید بنانا",urduDef:"پاس ورڈ کو بار بار ہیش کر کے مضبوط کلید بنانا۔",def:"Password-Based Key Derivation Function; strengthens weak passwords.",example:"Used in many applications for password hashing.",tag:"crypto"},
+  // NEW TOOLS
+  {term:"TheHarvester",urdu:"معلومات کاٹنے والا",urduDef:"عوامی ذرائع سے کسی کمپنی کی ای میلز اور معلومات جمع کریں۔",def:"Open-source tool to gather emails from public sources.",example:"Find all @company.com emails for social engineering.",tag:"tools"},
+  {term:"Shodan",urdu:"انٹرنیٹ کی نگاہ",urduDef:"انٹرنیٹ سے منسلک ڈیوائسز اور سروسز تلاش کریں۔",def:"Search engine for Internet-connected devices; finds vulnerable systems.",example:"Find unpatched printers, routers, cameras online.",tag:"tools"},
+  {term:"CyberChef",urdu:"ڈیٹا کی پاک صفائی",urduDef:"انکوڈنگ، ڈیکوڈنگ، ہیشنگ اور ڈیٹا تبدیلی کے لیے ٹول۔",def:"Online tool for encoding, decoding, and data transformation.",example:"Decode base64, convert hex to ASCII, create hashes.",tag:"tools"},
+  {term:"Ghidra",urdu:"الٹی انجینئرنگ",urduDef:"NSA کا سافٹ ویئر جو کمپائل کردہ بائنری کو سمجھتا ہے۔",def:"Reverse engineering framework for analyzing compiled binaries.",example:"Decompile malware to understand its behavior.",tag:"tools"},
+  {term:"Cuckoo Sandbox",urdu:"نام نہاد محفوظ سسٹم",urduDef:"شک سے متاثرہ فائلوں کو محفوظ ماحول میں چلا کر تجزیہ کریں۔",def:"Automated dynamic analysis of suspicious files.",example:"Detonate unknown file and analyze its behavior.",tag:"tools"},
+  // NEW CONCEPTS
+  {term:"OSINT",urdu:"کھلے ذرائع کی معلومات",urduDef:"عوامی طور پر دستیاب معلومات سے تحقیق کریں۔",def:"Open Source Intelligence; gathering info from public sources.",example:"LinkedIn profiling, Google dorking, whois lookups.",tag:"general"},
+  {term:"Google Dorking",urdu:"گوگل سے خفیہ تلاش",urduDef:"خصوصی گوگل سرچ operators سے غلط ترتیب والی فائلیں ڈھونڈیں۔",def:"Advanced Google searches to find exposed sensitive information.",example:"inurl:confidential filetype:pdf finds exposed docs.",tag:"general"},
+  {term:"Threat Feed",urdu:"خطرات کا بہاؤ",urduDef:"اپ ڈیٹ شدہ IOCs، CVEs، اور تہدیدوں کی معلومات۔",def:"Continuous stream of threat intelligence and IOCs.",example:"Subscribe to AlienVault OTX for threat feeds.",tag:"general"},
+  {term:"Indicator of Compromise",urdu:"حملے کی نشانی",urduDef:"متاثرہ سسٹم میں ملنے والی نشانیاں جیسے غیر معمولی IP۔",def:"Observable evidence of compromise; used for detection.",example:"Suspicious IP, malware hash, unusual domain.",tag:"general"},
+  {term:"YARA Rules",urdu:"یارہ کے قوانین",urduDef:"malware کو شناخت دینے کے لیے محدب ہوتے کوڈ کے نمونے۔",def:"Pattern-based rules for identifying malware.",example:"YARA rule matching WannaCry file signatures.",tag:"tools"},
+  {term:"TTP",urdu:"حملہ آوروں کی حکمت عملی",urduDef:"حملہ آوروں کی Tactics، Techniques اور Procedures۔",def:"Tactics, Techniques, and Procedures of threat actors.",example:"MITRE ATT&CK framework documents all known TTPs.",tag:"general"},
+  {term:"Kill Chain",urdu:"حملے کی زنجیر",urduDef:"سائبر حملے کے مرحلہ وار مراحل کا نمونہ۔",def:"Model of cyberattack stages from recon to action.",example:"Lockheed Martin Kill Chain: recon→weaponize→deliver→exploit→install→C2→act.",tag:"general"},
+  // ADVANCED IDENTITY
+  {term:"Multi-Factor Authentication",urdu:"کثیر تصدیق",urduDef:"پاس ورڈ کے علاوہ 2 یا اس سے زیادہ طریقے سے شناخت۔",def:"Using multiple authentication methods (password + token + biometric).",example:"Google Authenticator + SMS + security key.",tag:"identity"},
+  {term:"Passwordless Authentication",urdu:"پاس ورڈ کے بغیر",urduDef:"پاس ورڈ کی جگہ دوسرے طریقے استعمال کریں۔",def:"Authentication without passwords using biometrics or hardware keys.",example:"Windows Hello, FIDO2 security keys.",tag:"identity"},
+  {term:"Zero Knowledge Proof",urdu:"ثابت کریں بغیر بتائے",urduDef:"کچھ بتائے بغیر صارف یہ ثابت کرے کہ وہ کچھ جانتا ہے۔",def:"Cryptographic proof of knowledge without revealing the information.",example:"Block chain authentication; prove ownership without keys.",tag:"crypto"},
+  // DATABASE SECURITY
+  {term:"Database Encryption",urdu:"ڈیٹا بیس کی خفیہ کاری",urduDef:"ڈیٹا بیس میں محفوظ ڈیٹا کو خفیہ کریں۔",def:"Encrypting data at rest in database.",example:"Transparent Data Encryption (TDE) in SQL Server.",tag:"defense"},
+  {term:"Column-Level Encryption",urdu:"ستون کی خفیہ کاری",urduDef:"ڈیٹا بیس میں حساس ستونوں کو خفیہ کریں۔",def:"Encrypting specific sensitive columns in database.",example:"Credit card numbers encrypted even in backup.",tag:"defense"},
+  {term:"Tokenization",urdu:"علامت سازی",urduDef:"حقیقی ڈیٹا کی جگہ علامت استعمال کریں۔",def:"Replacing sensitive data with random tokens.",example:"Credit card stored as token; real card elsewhere.",tag:"defense"},
+];
+
+// ═══════════════════════════════════════════
+//   STATE
+// ═══════════════════════════════════════════
+const knownSet = new Set();
+let currentFilter = 'all';
+let isDark = false;
+let showUrduGlobal = false;
+let quizMode = false;
+let quizIndex = 0;
+let quizScore = 0;
+let quizTotal = 0;
+let quizAnswered = false;
+let focusedCardIndex = null;
+
+const tags = ['all','general','attack','defense','network','crypto','tools','identity','governance'];
+const tagLabels = {all:'All',general:'General',attack:'Attacks',defense:'Defense',network:'Network',crypto:'Crypto',tools:'Tools',identity:'Identity',governance:'Governance'};
+const tagIcons = {all:'◈',general:'◉',attack:'⚠',defense:'⛨',network:'⌁',crypto:'⋈',tools:'⚙',identity:'◎',governance:'⊟'};
+
+// ═══════════════════════════════════════════
+//   THEME
+// ═══════════════════════════════════════════
+function toggleTheme() {
+  isDark = !isDark;
+  document.body.classList.toggle('dark', isDark);
+  document.getElementById('themeBtn').textContent = isDark ? '◑ LIGHT' : '◑ DARK';
+  localStorage.setItem('cvTheme', isDark ? 'dark' : 'light');
+}
+
+// ═══════════════════════════════════════════
+//   URDU GLOBAL TOGGLE
+// ═══════════════════════════════════════════
+function toggleGlobalUrdu() {
+  showUrduGlobal = !showUrduGlobal;
+  document.getElementById('urduGlobalBtn').textContent = showUrduGlobal ? 'اردو ON' : 'اردو OFF';
+  document.getElementById('urduGlobalBtn').classList.toggle('active', showUrduGlobal);
+  render();
+}
+
+// ═══════════════════════════════════════════
+//   FILTERS
+// ═══════════════════════════════════════════
+function buildFilters() {
+  document.getElementById('filters').innerHTML = tags.map(t =>
+    `<button class="fbtn${t === 'all' ? ' active' : ''}" onclick="setFilter('${t}',this)">${tagIcons[t]} ${tagLabels[t]}</button>`
+  ).join('');
+}
+
+function setFilter(f, el) {
+  currentFilter = f;
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  render();
+}
+
+// ═══════════════════════════════════════════
+//   SEARCH
+// ═══════════════════════════════════════════
+function onSearch() {
+  const val = document.getElementById('search').value;
+  document.getElementById('clearBtn').style.display = val ? 'block' : 'none';
+  render();
+}
+
+function clearSearch() {
+  document.getElementById('search').value = '';
+  document.getElementById('clearBtn').style.display = 'none';
+  render();
+}
+
+// ═══════════════════════════════════════════
+//   PROGRESS
+// ═══════════════════════════════════════════
+function updateProgress() {
+  const k = knownSet.size, total = vocab.length;
+  document.getElementById('knownCount').textContent = k + ' known';
+  document.getElementById('progFill').style.width = Math.round(k / total * 100) + '%';
+}
+
+function resetKnown() {
+  knownSet.clear();
+  updateProgress();
+  render();
+  showToast('Progress reset');
+}
+
+// ═══════════════════════════════════════════
+//   KNOWN
+// ═══════════════════════════════════════════
+function markKnown(idx, e) {
+  e.stopPropagation();
+  if (knownSet.has(idx)) knownSet.delete(idx); else knownSet.add(idx);
+  updateProgress();
+  const card = document.getElementById('c' + idx);
+  if (card) card.classList.toggle('known', knownSet.has(idx));
+  const btn = document.getElementById('k' + idx);
+  if (btn) btn.textContent = knownSet.has(idx) ? '✓ KNOWN' : 'MARK';
+  if (knownSet.has(idx)) showToast('Marked as known');
+}
+
+// ═══════════════════════════════════════════
+//   CARD URDU TOGGLE (per-card)
+// ═══════════════════════════════════════════
+function toggleCardUrdu(idx, e) {
+  e.stopPropagation();
+  const el = document.getElementById('urdu-' + idx);
+  const btn = document.getElementById('ut' + idx);
+  if (!el) return;
+  const hidden = el.style.display === 'none' || el.style.display === '';
+  el.style.display = hidden ? 'block' : 'none';
+  btn.classList.toggle('urdu-visible', hidden);
+  btn.textContent = hidden ? 'اردو ✓' : 'اردو';
+}
+
+// ═══════════════════════════════════════════
+//   MODAL
+// ═══════════════════════════════════════════
+function openModal(idx) {
+  const v = vocab[idx];
+  document.getElementById('modalTerm').textContent = v.term;
+  document.getElementById('modalUrdu').textContent = v.urdu;
+  document.getElementById('modalDef').textContent = v.def;
+  document.getElementById('modalUrduDef').textContent = v.urduDef;
+  document.getElementById('modalExample').textContent = '▸ ' + v.example;
+  document.getElementById('modalTag').innerHTML = `<span class="tag tag-${v.tag}">${tagIcons[v.tag]} ${tagLabels[v.tag]}</span>`;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modalOverlay') || e.currentTarget.tagName === 'BUTTON') {
+    document.getElementById('modalOverlay').classList.remove('open');
+  }
+}
+
+// ═══════════════════════════════════════════
+//   TOAST
+// ═══════════════════════════════════════════
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+// ═══════════════════════════════════════════
+//   SHORTCUTS PANEL
+// ═══════════════════════════════════════════
+function toggleShortcuts() {
+  document.getElementById('shortcuts').classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════
+//   EXPAND / COLLAPSE ALL
+// ═══════════════════════════════════════════
+function expandAll() {
+  document.querySelectorAll('.card').forEach(c => c.classList.add('flipped'));
+}
+
+function collapseAll() {
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('flipped'));
+}
+
+// ═══════════════════════════════════════════
+//   SORT + FILTER LOGIC
+// ═══════════════════════════════════════════
+function getFiltered() {
+  const q = document.getElementById('search').value.toLowerCase();
+  let filtered = vocab.map((v, i) => ({ v, i })).filter(({ v }) =>
+    (currentFilter === 'all' || v.tag === currentFilter) &&
+    (!q || v.term.toLowerCase().includes(q) || v.def.toLowerCase().includes(q) ||
+      v.urdu.includes(q) || (v.urduDef && v.urduDef.includes(q)))
+  );
+  const sort = document.getElementById('sortSelect').value;
+  if (sort === 'az') filtered.sort((a, b) => a.v.term.localeCompare(b.v.term));
+  else if (sort === 'za') filtered.sort((a, b) => b.v.term.localeCompare(a.v.term));
+  else if (sort === 'random') filtered.sort(() => Math.random() - 0.5);
+  else if (sort === 'unknown') filtered.sort((a, b) => (knownSet.has(a.i) ? 1 : 0) - (knownSet.has(b.i) ? 1 : 0));
+  return filtered;
+}
+
+// ═══════════════════════════════════════════
+//   RENDER
+// ═══════════════════════════════════════════
+function render() {
+  const filtered = getFiltered();
+  document.getElementById('statsText').textContent = filtered.length + ' / ' + vocab.length + ' terms';
+  updateProgress();
+  const grid = document.getElementById('grid');
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty">No terms found. Try a different search or filter.</div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(({ v, i }, animIdx) => {
+    const isKnown = knownSet.has(i);
+    const urduVisible = showUrduGlobal;
+    return `
+    <div class="card${isKnown ? ' known' : ''}" id="c${i}" onclick="this.classList.toggle('flipped')"
+      style="animation-delay:${Math.min(animIdx * 0.025, 0.4)}s">
+      <div class="card-inner">
+        <div class="card-face card-front">
+          <span class="tag tag-${v.tag}">${tagIcons[v.tag]} ${tagLabels[v.tag]}</span>
+          <div class="term">${v.term}</div>
+          <div class="urdu-front" id="urdu-${i}" style="display:${urduVisible ? 'block' : 'none'}">${v.urdu}</div>
+        </div>
+        <div class="card-face card-back">
+          <span class="tag tag-${v.tag}">${tagIcons[v.tag]} ${tagLabels[v.tag]}</span>
+          <div class="def">${v.def}</div>
+          <div class="urdu-def">${v.urduDef}</div>
+          <div class="english-line">${v.term} — ${v.urdu}</div>
+          <div class="example">${v.example}</div>
+        </div>
+      </div>
+      <button class="known-btn" id="k${i}" onclick="markKnown(${i},event)">${isKnown ? '✓ KNOWN' : 'MARK'}</button>
+      <button class="urdu-toggle-btn${urduVisible ? ' urdu-visible' : ''}" id="ut${i}" onclick="toggleCardUrdu(${i},event)">${urduVisible ? 'اردو ✓' : 'اردو'}</button>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════
+//   QUIZ MODE
+// ═══════════════════════════════════════════
+function toggleQuiz() {
+  quizMode = !quizMode;
+  document.getElementById('quizBar').classList.toggle('active', quizMode);
+  document.getElementById('quizBtn').classList.toggle('active', quizMode);
+  if (quizMode) { quizScore = 0; quizIndex = 0; nextQuiz(); }
+}
+
+function nextQuiz() {
+  const filtered = getFiltered();
+  if (!filtered.length) return;
+  quizTotal = filtered.length;
+  quizAnswered = false;
+  const qi = Math.floor(Math.random() * filtered.length);
+  const correct = filtered[qi];
+  const others = filtered.filter((_, i) => i !== qi);
+  const wrongPicks = others.sort(() => Math.random() - 0.5).slice(0, 3);
+  const options = [...wrongPicks, correct].sort(() => Math.random() - 0.5);
+
+  document.getElementById('quizQ').textContent = `What is: "${correct.v.term}" (${correct.v.urdu})?`;
+  document.getElementById('quizScore').textContent = `Score: ${quizScore}`;
+  document.getElementById('quizProgress').textContent = `${Math.min(quizIndex + 1, quizTotal)} of ${quizTotal}`;
+
+  document.getElementById('quizOptions').innerHTML = options.map((o, oi) => `
+    <button class="quiz-opt" onclick="answerQuiz(this, '${o.i}', '${correct.i}', ${oi})">${o.v.def}</button>
+  `).join('');
+}
+
+function answerQuiz(btn, chosenIdx, correctIdx, optIdx) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const correct = String(chosenIdx) === String(correctIdx);
+  if (correct) { quizScore++; btn.classList.add('correct'); showToast('✓ Correct!'); }
+  else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.quiz-opt').forEach(b => {
+      if (b.onclick && b.onclick.toString().includes(correctIdx)) b.classList.add('correct');
+    });
+    showToast('✗ Wrong');
+  }
+  document.querySelectorAll('.quiz-opt').forEach(b => b.disabled = true);
+  document.getElementById('quizScore').textContent = `Score: ${quizScore}`;
+  quizIndex++;
+}
+
+// ═══════════════════════════════════════════
+//   KEYBOARD SHORTCUTS
+// ═══════════════════════════════════════════
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') {
+    if (e.key === 'Escape') { clearSearch(); e.target.blur(); }
+    return;
+  }
+  if (e.key === 'Escape') { document.getElementById('modalOverlay').classList.remove('open'); }
+  if (e.key === 'u' || e.key === 'U') { toggleGlobalUrdu(); }
+  if (e.key === 'd' || e.key === 'D') { toggleTheme(); }
+  if (e.key === '/') { e.preventDefault(); document.getElementById('search').focus(); }
+});
+
+// ═══════════════════════════════════════════
+//   INIT
+// ═══════════════════════════════════════════
+(function init() {
+  const saved = localStorage.getItem('cvTheme');
+  if (saved === 'dark') { isDark = true; document.body.classList.add('dark'); document.getElementById('themeBtn').textContent = '◑ LIGHT'; }
+  buildFilters();
+  render();
+})();
+</script>
+<!-- FOOTER / WATERMARK -->
+<footer style="position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1.5px solid var(--border-strong);padding:8px 16px;display:flex;justify-content:space-between;align-items:center;z-index:90;font-size:10px;color:var(--text3);letter-spacing:0.05em;transition:background 0.3s,border-color 0.3s">
+  <div style="display:flex;align-items:center;gap:8px">
+    <span style="font-weight:700;color:var(--text)">© 2026 Fawad Hassan</span>
+    <span style="color:var(--text3)">|</span>
+    <a href="https://www.linkedin.com/in/fawad-hassan-bba928295/" target="_blank" rel="noopener" style="color:var(--text2);text-decoration:none;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text2)'">LinkedIn ↗</a>
+  </div>
+  <div style="font-size:9px;color:var(--text3)">CC BY-NC 4.0 | NonCommercial use only</div>
+</footer>
+
+<!-- PROTECTION: Disable right-click on cards to reduce casual copying -->
+<script>
+document.addEventListener('contextmenu', function(e) {
+  if (e.target.closest('.card') || e.target.closest('.modal')) {
+    e.preventDefault();
+    showToast('© Protected content');
+  }
+});
+</script>
+</body>
+</html>
